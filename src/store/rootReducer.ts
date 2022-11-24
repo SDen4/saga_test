@@ -1,9 +1,7 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
-import mainReducer from 'store/main/reducers/reducer';
+import main from 'store/main/reducers/reducer';
 
-export const rootReducer = combineReducers({
-  main: mainReducer,
-});
+export const rootReducer = combineReducers({ main });
 
 export type AppStateType = ReturnType<typeof rootReducer>;

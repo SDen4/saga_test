@@ -64,6 +64,11 @@
     ],
     "@typescript-eslint/unbound-method": "off",
     "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/naming-convention": [
+      "warn", {
+        "selector": "default", "format": ["camelCase", "PascalCase", "snake_case", "UPPER_CASE"]
+      }
+    ],
     "max-classes-per-file": "off",
     "prefer-const": "off",
     "arrow-parens": "off",

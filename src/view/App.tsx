@@ -1,11 +1,16 @@
 import React, { FC, lazy, Suspense, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { Header } from 'components/Header';
 import { Result } from 'components/Result';
+import { Loader } from 'components/ui/Loader';
+import { Weather } from 'components/Weather';
 
-import { getInitDataSaga } from 'store/main/actions';
+import { weatherInitSaga } from 'store/main/actions';
 import { reset, rndData } from 'store/main/reducers';
+
+import { weatherLoadingSelect } from 'selectors/main';
 
 import styles from './styles.module.css';
 
@@ -15,8 +20,10 @@ const LazyButton = lazy(() => import('components/ui/Button'));
 export const App: FC = () => {
   const dispatch = useDispatch();
 
+  const weatherLoading = useSelector(weatherLoadingSelect);
+
   useEffect(() => {
-    dispatch(getInitDataSaga());
+    dispatch(weatherInitSaga());
 
     return () => {
       dispatch(reset());
@@ -31,6 +38,10 @@ export const App: FC = () => {
   return (
     <main className={styles.main}>
       <Header />
+
+      <section className={styles.section}>
+        {weatherLoading ? <Loader height={300} /> : <Weather />}
+      </section>
 
       <section className={styles.section}>
         <Suspense fallback={<p>Loading...</p>}>

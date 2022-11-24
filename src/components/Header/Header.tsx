@@ -5,9 +5,7 @@ import styles from './styles.module.css';
 export const Header: FC = () => {
   return (
     <header>
-      <h1 className={styles.appHeader}>
-        Typescript - CSS - React - Redux-saga - Redux-toolkit - Axios - Jest
-      </h1>
+      <h1 className={styles.appHeader}>Saga tests</h1>
     </header>
   );
 };

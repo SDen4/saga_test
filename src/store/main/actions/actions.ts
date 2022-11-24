@@ -1,5 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
 
-const main = 'MAIN';
+const main = 'MReducer';
 
-export const getInitDataSaga = createAction(`${main}/GET_INIT_DATA_SAGA`);
+export const weatherInitSaga = createAction(`${main}/WEATHER_SAGA`);
