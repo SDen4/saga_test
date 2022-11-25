@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
+import { Table } from 'components/Table';
 import Button from 'components/ui/Button';
 
 import { currencySaga } from 'store/main/actions';
@@ -9,6 +10,7 @@ import { currencySaga } from 'store/main/actions';
 import {
   currencyDataSelect,
   currencyErrorSelect,
+  currencyHistorySelect,
   currencyLoadingSelect,
 } from 'selectors/main';
 
@@ -20,6 +22,7 @@ export const Currencies: FC = () => {
   const currency = useSelector(currencyDataSelect);
   const currencyLoading = useSelector(currencyLoadingSelect);
   const currencyError = useSelector(currencyErrorSelect);
+  const currencyHistoryStore = useSelector(currencyHistorySelect);
 
   const [val, setVal] = useState('EUR');
 
@@ -55,6 +58,8 @@ export const Currencies: FC = () => {
       {currencyError ? (
         <div className={styles.error}>{currencyError.message}</div>
       ) : null}
+
+      {currencyHistoryStore.length ? <Table /> : null}
     </div>
   );
 };

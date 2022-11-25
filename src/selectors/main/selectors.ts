@@ -27,6 +27,11 @@ export const currencyErrorSelect = createSelector(
   (currencyError) => currencyError,
 );
 
+export const currencyHistorySelect = createSelector(
+  (store: AppStateType) => store.main.currencyHistory,
+  (currencyHistory) => currencyHistory,
+);
+
 export const rndDataSelect = createSelector(
   (store: AppStateType) => store.main.rndData,
   (rndData) => rndData,

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { CurrencyResponce } from 'model/currency';
+import { CurrencyHistoryItemType, CurrencyResponce } from 'model/currency';
 import { WeatherChartItem } from 'model/weather';
 
 export interface IInitialState {
@@ -9,6 +9,7 @@ export interface IInitialState {
   currencyLoading: boolean;
   currencyData: CurrencyResponce;
   currencyError: any;
+  currencyHistory: CurrencyHistoryItemType[];
   rndData: number | null;
 }
 
@@ -24,6 +25,7 @@ const initialState = {
     success: true,
   },
   currencyError: null,
+  currencyHistory: [],
   rndData: null,
 } as IInitialState;
 
@@ -46,6 +48,9 @@ const mainReducer = createSlice({
     currencyError(state, action: PayloadAction<any>) {
       return { ...state, currencyError: action.payload };
     },
+    currencyHistory(state, action: PayloadAction<CurrencyHistoryItemType[]>) {
+      return { ...state, currencyHistory: action.payload };
+    },
     rndData(state, action: PayloadAction<number>) {
       return { ...state, rndData: action.payload };
     },
@@ -63,5 +68,6 @@ export const {
   currencyLoading,
   currencyData,
   currencyError,
+  currencyHistory,
 } = mainReducer.actions;
 export default mainReducer.reducer;
