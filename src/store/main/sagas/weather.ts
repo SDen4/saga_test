@@ -1,17 +1,17 @@
 import { SagaIterator } from 'redux-saga';
 import { put, takeEvery } from 'redux-saga/effects';
 
-import { weatherInitSaga } from '../actions';
+import { weatherSaga } from '../actions';
 
 import { weatherChart, weatherLoading } from '../reducers';
 
-import { httpRequest } from 'api/main/httpRequest';
+import { requestWeather } from 'api/main/httpRequests';
 
 import { WeatherAllDataType, WeatherChartItem } from 'model/weather';
 
 function* getWeatherData() {
   try {
-    const initValue: WeatherAllDataType = yield httpRequest();
+    const initValue: WeatherAllDataType = yield requestWeather();
 
     const chartData: WeatherChartItem[] = yield initValue.hourly.time.map(
       (el, i) => {
@@ -31,6 +31,6 @@ function* getWeatherData() {
   }
 }
 
-export function* weatherSaga(): SagaIterator {
-  [yield takeEvery(weatherInitSaga, getWeatherData)];
+export function* weatherWatcher(): SagaIterator {
+  [yield takeEvery(weatherSaga, getWeatherData)];
 }

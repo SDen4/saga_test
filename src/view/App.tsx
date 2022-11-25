@@ -2,12 +2,13 @@ import React, { FC, lazy, Suspense, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
+import { Currencies } from 'components/Currencies';
 import { Header } from 'components/Header';
 import { Result } from 'components/Result';
 import { Loader } from 'components/ui/Loader';
 import { Weather } from 'components/Weather';
 
-import { weatherInitSaga } from 'store/main/actions';
+import { weatherSaga } from 'store/main/actions';
 import { reset, rndData } from 'store/main/reducers';
 
 import { weatherLoadingSelect } from 'selectors/main';
@@ -23,7 +24,7 @@ export const App: FC = () => {
   const weatherLoading = useSelector(weatherLoadingSelect);
 
   useEffect(() => {
-    dispatch(weatherInitSaga());
+    dispatch(weatherSaga());
 
     return () => {
       dispatch(reset());
@@ -41,6 +42,10 @@ export const App: FC = () => {
 
       <section className={styles.section}>
         {weatherLoading ? <Loader height={300} /> : <Weather />}
+      </section>
+
+      <section className={styles.section}>
+        <Currencies />
       </section>
 
       <section className={styles.section}>

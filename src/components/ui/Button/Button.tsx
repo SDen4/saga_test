@@ -6,12 +6,13 @@ interface IProps {
   type: 'button' | 'reset' | 'submit';
   onBtnClick: () => void;
   title: string;
+  isLoading?: boolean;
 }
 
-const Button: FC<IProps> = ({ type, onBtnClick, title }) => {
+const Button: FC<IProps> = ({ type, onBtnClick, title, isLoading }) => {
   return (
     <button className={styles.button} type={type} onClick={onBtnClick}>
-      {title}
+      {isLoading ? 'loading...' : title}
     </button>
   );
 };
