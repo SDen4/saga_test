@@ -16,7 +16,7 @@ import { requestCurrency } from 'api/main/httpRequests';
 
 import { CurrencyHistoryItemType, CurrencyResponce } from 'model/currency';
 
-function* getCurrencyData({ payload }: ReturnType<typeof currencySaga>) {
+export function* getCurrencyData({ payload }: ReturnType<typeof currencySaga>) {
   const currencyErr: unknown = yield select(currencyErrorSelect);
   const currencyHistoryStore: CurrencyHistoryItemType[] = yield select(
     currencyHistorySelect,
