@@ -9,7 +9,7 @@ import { requestWeather } from 'api/main/httpRequests';
 
 import { WeatherAllDataType, WeatherChartItem } from 'model/weather';
 
-function* getWeatherData() {
+export function* getWeatherData() {
   try {
     const initValue: WeatherAllDataType = yield requestWeather();
 
